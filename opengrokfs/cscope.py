@@ -55,7 +55,7 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--debug', action='store_true')
-    parser.add_argument('--url')
+    parser.add_argument('--url', required=True)
     parser.add_argument('--project', action='append')
     parser.add_argument('--strip')
 
