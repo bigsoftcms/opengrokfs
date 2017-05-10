@@ -3,8 +3,8 @@
 opengrokfs
 ==========
 
-opengrokfs implement a FUSE filesystem backed by the OpenGrok web interface.  A
-cscope-clone which uses the OpenGrok web interface as the backend is also
+opengrokfs implements a FUSE filesystem backed by the OpenGrok web interface.
+A cscope clone which uses the OpenGrok web interface as the backend is also
 included.
 
 Install with pip::
@@ -13,7 +13,6 @@ Install with pip::
 
 Run ``opengrokfs`` with the URL of the OpenGrok start page and the local
 directory where the filesystem should be mounted::
-
 
     mkdir -p mnt
     opengrokfs http://androidxref.com/7.1.1_r6/ mnt
@@ -53,6 +52,7 @@ backend::
     libc/bionic/fork.cpp <unknown> 34 #define FORK_FLAGS (CLONE_CHILD_SETTID | CLONE_CHILD_CLEARTID | SIGCHLD)
     libc/kernel/uapi/linux/sched.h <unknown> 41 #define CLONE_CHILD_SETTID 0x01000000
 
-``ogcscope`` can be used from within any editor which supports cscope.  For example, for ``vim``::
+``ogcscope`` can be used from within any editor which supports cscope.  For
+example, for ``vim``::
 
     mnt/bionic$ vim -c 'set cscopeprg=ogcscope' -c 'cs add .opengrokfs'
