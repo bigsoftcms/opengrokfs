@@ -14,7 +14,7 @@ setup(
     url='https://github.com/rabinv/opengrokfs',
     author='Rabin Vincent',
     author_email='rabin@rab.in',
-    version='0.2.0',
+    version='0.2.1',
     install_requires=[
         'attrs>=16.3.0',
         'dateparser>=0.6.0',
