@@ -1,3 +1,4 @@
+import threading
 import urllib.parse
 
 import requests
@@ -29,6 +30,7 @@ class OpenGrok(object):
         self.url = url
         self.base = urllib.parse.urlparse(self.url).path
         self.htmlparser = etree.HTMLParser()
+        self.lock = threading.Lock()
 
         self.params = {'n': 10000}
         self.projects = projects
@@ -120,7 +122,10 @@ class OpenGrok(object):
             # Empty directories are folded in newer versions
             name = name.split('/')[0]
 
-            date = dateparser.parse(self._text(tds[colmap['Date']]))
+            with self.lock:
+                # dateparser uses a single instance of FreshnessDataParser
+                # whose self.now value usage is not thread-safe.
+                date = dateparser.parse(self._text(tds[colmap['Date']]))
             date = date.replace(hour=0, minute=0, second=0, microsecond=0)
 
             sizetext = self._text(tds[colmap['Size']])
