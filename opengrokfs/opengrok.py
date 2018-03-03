@@ -63,7 +63,13 @@ class OpenGrok(object):
             if tr.get('class') == 'dir':
                 continue
 
-            href = tr.find('./td[@class="f"]/a').get('href')
+            try:
+                href = tr.find('./td[@class="f"]/a').get('href')
+            except AttributeError:
+                # If a file is missing, then OpenGrok inserts an entire HTML
+                # document (headers and all) inside the table.  Ignore this.
+                continue
+
             path = href.replace(self.base, '').replace('xref', '')
 
             if self.strip and path.startswith(self.strip):
